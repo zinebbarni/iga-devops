@@ -45,7 +45,46 @@ Créer un projet
 renommer la branche master en main sur sonarsource 
 Ajouter la configuration proposée aux actions github
 
-Corriger les erreurs "Remove this unused import" remonter par sonarsource  
+Corriger les erreurs "Remove this unused import" remonter par sonarsource
+Verifier le covrege de votre projet
+
+Ajouter la secrion suivante au fichier pom:
+
+<profiles>
+	<profile>
+  <id>coverage</id>
+  <build>
+   <plugins>
+    <plugin>
+      <groupId>org.jacoco</groupId>
+     <artifactId>jacoco-maven-plugin</artifactId>
+      <version>0.8.7</version>
+      <executions>
+        <execution>
+          <id>prepare-agent</id>
+          <goals>
+            <goal>prepare-agent</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>report</id>
+          <goals>
+            <goal>report</goal>
+          </goals>
+          <configuration>
+            <formats>
+              <format>XML</format>
+            </formats>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+   </plugins>
+  </build>
+</profile>
+</profiles>
+
+Ajouter "-Pcoverage" a configuratuon de votre pipline
 
 ## 4 - Ajouter une étape creation d'image docker
 
