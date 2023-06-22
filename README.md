@@ -111,5 +111,6 @@ Ajouter la section suivante sur github actions:
        password:  ${{ secrets.DOCKER_HUB_PASSWORD }}
        repository: yourusername/yourprojectname       
        tags: ${{github.run_number}}
-
+ ## 5 - Test votre image docker
+ 	docker run -p 8086:8080 yourusername/yourprojectname:tag
 
